@@ -1,9 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 
-const { Stock } = requre('./stock');
+const { Stock } = require('./stock');
 module.exports = (sequelize, DataTypes) => {
   class Export extends Model {
     /**
@@ -13,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Import.hasOne(models.Stock, {foreignKey: 'stock_fk_id'});
+      Export.belongsTo(models.Stock, {foreignKey: 'stock_fk_id'});
     }
   }
   Export.init(
@@ -36,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     sequelize,
     modelName: 'Export',
+    timestamps: false
   });
   return Export;
 };

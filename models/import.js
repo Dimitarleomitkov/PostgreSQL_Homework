@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const { Stock } = requre('./stock');
+const { Stock } = require('./stock');
 module.exports = (sequelize, DataTypes) => {
   class Import extends Model {
     /**
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Import.hasOne(models.Stock, {foreignKey: 'stock_fk_id'});
+      Import.belongsTo(models.Stock, {foreignKey: 'stock_fk_id'});
     }
   }
   Import.init(
@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     sequelize,
     modelName: 'Import',
+    timestamps: false
   });
   return Import;
 };

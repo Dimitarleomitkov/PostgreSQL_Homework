@@ -1,31 +1,20 @@
 const { ApolloServer, ApolloServerOptions, BaseContext } = require(`@apollo/server`);
 const { startStandaloneServer } = require(`@apollo/server/standalone`);
-const { Sequelize } = require('sequelize');
-
-const sequelize = new Sequelize('postgres://postgres:856525@localhost:5432/warehouseDB');
-module.exports = { sequelize };
-
-// Import models
-const { Warehouse } = require(`./models/warehouse`);
-// const { Product } = require(`./models/product`);
-// const { Stock } = require(`./models/stock`);
-// const { Import } = require(`./models/import`);
-// const { Export } = require(`./models/export`);
-
-
-async function test_posgress () {
-	try {
-	  await sequelize.authenticate();
-	  console.log('Connection has been established successfully.');
-	} catch (error) {
-	  console.error('Unable to connect to the database:', error);
-	}
-}
+const DB = require(`../models/index`);
 
 async function main() {
-	await test_posgress();
+	// Product - name, size, hazard
+	// Warehouse - address, size, hazard
+	// Stock - quantity, warehouse_fk_id, product_fk_id
+	// Import - date, stock_fk_id
+	// Export - date, stock_fk_id
 
-
+	// const new_product = await DB.Product.create({name: 'Tobaco', size: 2, hazard: true});
+	// console.log(new_product);
+	// const new_stock = await DB.Stock.create({quantity: 50, warehouse_fk_id: 3, product_fk_id: new_product.id});
+	// await DB.Import.create({date: '2022-10-29', stock_fk_id: new_stock.id});
+	// await DB.Export.create({date: '2022-11-01', stock_fk_id: 4});
+	// console.log(DB);
 
 	process.exit();
 }
