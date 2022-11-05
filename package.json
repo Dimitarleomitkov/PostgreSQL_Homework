@@ -1,0 +1,27 @@
+{
+  "name": "yarahomework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.1.0",
+    "@mikro-orm/core": "^5.5.0",
+    "@mikro-orm/migrations": "^5.5.0",
+    "@mikro-orm/postgresql": "^5.5.0",
+    "graphql": "^16.6.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.25.3",
+    "sequelize-cli": "^6.5.2"
+  }
+}
