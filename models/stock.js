@@ -1,7 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
 const { Product } = require('./product');
-const { Warehouse } = require('./warehouse');
 module.exports = (sequelize, DataTypes) => {
   class Stock extends Model {
     /**
@@ -11,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Stock.belongsTo(models.Warehouse, {foreignKey: 'warehouse_fk_id'});
       Stock.belongsTo(models.Product, {foreignKey: 'product_fk_id'});
     }
   }
@@ -21,15 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    warehouse_fk_id:
-    {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Warehouse,
-        key: 'id'
-      }
     },
     product_fk_id:
     {

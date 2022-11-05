@@ -2,6 +2,7 @@
 const { Model } = require('sequelize');
 
 const { Stock } = require('./stock');
+const { Warehouse } = require('./warehouse');
 module.exports = (sequelize, DataTypes) => {
   class Export extends Model {
     /**
@@ -12,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Export.belongsTo(models.Stock, {foreignKey: 'stock_fk_id'});
+      Export.belongsTo(models.Warehouse, {foreignKey: 'warehouse_fk_id'});
     }
   }
   Export.init(
@@ -27,6 +29,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {
         model: Stock,
+        key: 'id'
+      }
+    },
+    warehouse_fk_id:
+    {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Warehouse,
         key: 'id'
       }
     }

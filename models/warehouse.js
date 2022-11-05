@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+
+const { Import } = require('./import');
 module.exports = (sequelize, DataTypes) => {
   class Warehouse extends Model {
     /**
@@ -11,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Warehouse.hasMany(models.Import, {foreignKey: 'warehouse_fk_id'});
     }
   }
   Warehouse.init(

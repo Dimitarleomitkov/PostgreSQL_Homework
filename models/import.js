@@ -4,6 +4,7 @@ const {
 } = require('sequelize');
 
 const { Stock } = require('./stock');
+const { Warehouse } = require('./warehouse');
 module.exports = (sequelize, DataTypes) => {
   class Import extends Model {
     /**
@@ -14,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Import.belongsTo(models.Stock, {foreignKey: 'stock_fk_id'});
+      Import.belongsTo(models.Warehouse, {foreignKey: 'warehouse_fk_id'});
     }
   }
   Import.init(
@@ -31,6 +33,20 @@ module.exports = (sequelize, DataTypes) => {
         model: Stock,
         key: 'id'
       }
+    },
+    warehouse_fk_id:
+    {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Warehouse,
+        key: 'id'
+      }
+    },
+    is_exported:
+    {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   },
   {
